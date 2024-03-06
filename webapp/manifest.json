@@ -1,0 +1,197 @@
+{
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "atom.ui.clearing.clearingapplication",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.12.2",
+            "toolsId": "4604e08e-d79b-4939-ab59-f52832845a10"
+        },
+        "dataSources": {
+            "crmModel": {
+                "uri": "/v2/crm/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/crm-/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "productModel": {
+                "uri": "/v2/product/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/product-/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "bankAccountModel":{
+                "uri": "/sap/opu/odata/sap/ZC_YEL_TB_BANK_CLEA_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/bankAccount-/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "clearingModel":{
+                "uri": "/sap/opu/odata/sap/ZCLEARINGAPPLICATIONSERVICES_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/clearing-/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "clearing-inbound": {
+                    "semanticObject": "clearing",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": "",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "config": { "fullWidth": true },
+        "dependencies": {
+            "minUI5Version": "1.120.4",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "atom.ui.clearing.clearingapplication.i18n.i18n"
+                }
+            },
+            "crmModel": {
+                "dataSource": "crmModel",
+                "preload": true,
+                "settings": {}
+            },
+            "productModel": {
+                "dataSource": "productModel",
+                "preload": true,
+                "settings": {}
+            },
+            "bankAccountModel":{
+                "dataSource": "bankAccountModel",
+                "preload": true,
+                "settings": {}
+            },
+            "clearingModel":{
+                "dataSource": "clearingModel",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "atom.ui.clearing.clearingapplication.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteMainView",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetMainView"
+                    ]
+                },
+                {
+                    "name": "RouteClearingView",
+                    "pattern": "clearing",
+                    "target": [
+                        "TargetClearingView"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetMainView": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "MainView",
+                    "viewName": "MainView"
+                },
+                "TargetClearingView": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Clearing",
+                    "viewName": "Clearing"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "atom.ui.clearing.clearingapplication.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "atomuiclearingclearingapplication"
+    }
+}

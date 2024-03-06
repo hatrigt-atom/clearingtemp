@@ -1,0 +1,51 @@
+/* Enter your custom styles here */
+.box-shadowSep {
+    margin-top: 1em;
+    margin-left: 3em;
+    box-shadow: 0 0 0 0.0625rem rgba(0, 0, 0, 0.1),
+      0 0.125rem 0.5rem 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .sapUiBody:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    background-image: url("../images/Background.png");
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
+  }
+
+  .sapUiBodyClearingBG:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    background-image: url("../images/Background_Clearing.png");
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
+  }
+
+  .borderbox {
+    border: 0.5px solid rgb(215, 215, 215);
+  }
+
+  .disableDateIP input{
+    pointer-events: none;
+    color: transparent;
+    text-shadow: 0 0 0 gray;
+   }
+
+
+  
+  

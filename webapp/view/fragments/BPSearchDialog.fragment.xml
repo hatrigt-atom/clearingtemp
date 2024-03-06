@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <SelectDialog noDataText="No Business Partners Found" title="Select Business Partner" search="handleBPSearch" confirm="handleBPConfirm" cancel="handleBPValueHelpClose" multiSelect="true" showClearButton="true" items="{localModel>/BPList}">
+        <StandardListItem id="_IDGenStandardListItem1"
+            title="{localModel>BP_NAME}"
+            description="{localModel>BP_ID}" />
+    </SelectDialog>
+</core:FragmentDefinition>

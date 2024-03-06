@@ -1,0 +1,1073 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="atom.srv.mdm.crm.CRMService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="BusinessPartnerRolesList" EntityType="atom.srv.mdm.crm.CRMService.BusinessPartnerRolesList"/>
+                <EntitySet Name="BusinessPartnerTypes" EntityType="atom.srv.mdm.crm.CRMService.BusinessPartnerTypes"/>
+                <EntitySet Name="BusinessPartners" EntityType="atom.srv.mdm.crm.CRMService.BusinessPartners"/>
+                <EntitySet Name="Insureds" EntityType="atom.srv.mdm.crm.CRMService.Insureds"/>
+                <EntitySet Name="AdditonalInsureds" EntityType="atom.srv.mdm.crm.CRMService.AdditonalInsureds"/>
+                <EntitySet Name="Brokers" EntityType="atom.srv.mdm.crm.CRMService.Brokers"/>
+                <EntitySet Name="Members" EntityType="atom.srv.mdm.crm.CRMService.Members"/>
+                <EntitySet Name="BusinessPartnerRoles" EntityType="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles"/>
+                <EntitySet Name="BusinessPartnerContacts" EntityType="atom.srv.mdm.crm.CRMService.BusinessPartnerContacts"/>
+                <EntitySet Name="BusinessPartnersWithAttributes" EntityType="atom.srv.mdm.crm.CRMService.BusinessPartnersWithAttributes"/>
+                <EntitySet Name="Country" EntityType="atom.srv.mdm.crm.CRMService.Country"/>
+                <FunctionImport Name="syncBP" ReturnType="Edm.Boolean" m:HttpMethod="POST">
+                    <Parameter Name="bp" Type="atom.srv.mdm.crm.CRMService.BusinessPartnerDetails" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <AssociationSet Name="BusinessPartners_ItsRoles" Association="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsRoles">
+                    <End Role="BusinessPartners" EntitySet="BusinessPartners"/>
+                    <End Role="BusinessPartnerRoles" EntitySet="BusinessPartnerRoles"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessPartners_ItsCountry" Association="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsCountry">
+                    <End Role="BusinessPartners" EntitySet="BusinessPartners"/>
+                    <End Role="Country" EntitySet="Country"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessPartners_ItsContacts" Association="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsContacts">
+                    <End Role="BusinessPartners" EntitySet="BusinessPartners"/>
+                    <End Role="BusinessPartnerContacts" EntitySet="BusinessPartnerContacts"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessPartners_ItsBusinessPartnerTypes" Association="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsBusinessPartnerTypes">
+                    <End Role="BusinessPartners" EntitySet="BusinessPartners"/>
+                    <End Role="BusinessPartnerTypes" EntitySet="BusinessPartnerTypes"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessPartners_ItsInsureds" Association="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsInsureds">
+                    <End Role="BusinessPartners" EntitySet="BusinessPartners"/>
+                    <End Role="BusinessPartnerRoles" EntitySet="BusinessPartnerRoles"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessPartners_ItsAdditonalInsureds" Association="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsAdditonalInsureds">
+                    <End Role="BusinessPartners" EntitySet="BusinessPartners"/>
+                    <End Role="BusinessPartnerRoles" EntitySet="BusinessPartnerRoles"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessPartners_ItsBrokers" Association="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsBrokers">
+                    <End Role="BusinessPartners" EntitySet="BusinessPartners"/>
+                    <End Role="BusinessPartnerRoles" EntitySet="BusinessPartnerRoles"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessPartners_ItsMembers" Association="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsMembers">
+                    <End Role="BusinessPartners" EntitySet="BusinessPartners"/>
+                    <End Role="BusinessPartnerRoles" EntitySet="BusinessPartnerRoles"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessPartnerRoles_ItsBusinessPartner" Association="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles_ItsBusinessPartner">
+                    <End Role="BusinessPartnerRoles" EntitySet="BusinessPartnerRoles"/>
+                    <End Role="BusinessPartners" EntitySet="BusinessPartners"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessPartnerRoles_ItsRole" Association="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles_ItsRole">
+                    <End Role="BusinessPartnerRoles" EntitySet="BusinessPartnerRoles"/>
+                    <End Role="BusinessPartnerRolesList" EntitySet="BusinessPartnerRolesList"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessPartnerContacts_ItsBusinessPartner" Association="atom.srv.mdm.crm.CRMService.BusinessPartnerContacts_ItsBusinessPartner">
+                    <End Role="BusinessPartnerContacts" EntitySet="BusinessPartnerContacts"/>
+                    <End Role="BusinessPartners" EntitySet="BusinessPartners"/>
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="BusinessPartnerRolesList">
+                <Key>
+                    <PropertyRef Name="ROLE_NAME"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ACTIVE" Type="Edm.Boolean"/>
+                <Property Name="DELETED" Type="Edm.Boolean"/>
+                <Property Name="ROLE_NAME" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="ROLE_DESC" Type="Edm.String" MaxLength="255"/>
+            </EntityType>
+            <EntityType Name="BusinessPartnerTypes">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ACTIVE" Type="Edm.Boolean"/>
+                <Property Name="DELETED" Type="Edm.Boolean"/>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="BusinessPartners">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ACTIVE" Type="Edm.Boolean"/>
+                <Property Name="DELETED" Type="Edm.Boolean"/>
+                <Property Name="ID" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="BP_ID_EXT" Type="Edm.String" MaxLength="20"/>
+                <Property Name="FIRST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="MIDDLE_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="LAST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CITY" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ADDR1" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR2" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR3" Type="Edm.String" MaxLength="255"/>
+                <Property Name="COUNTRY_CD" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COMPANY_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ALIAS" Type="Edm.String" MaxLength="255"/>
+                <Property Name="SEARCH_STRING" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="EMAIL" Type="Edm.String" MaxLength="255"/>
+                <Property Name="BUSINESS_PARTNER_TYPE_ID" Type="Edm.Int32"/>
+                <Property Name="FULL_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="FULL_ADDR" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="COPMANY_TYPE_CODE" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COMPNAY_TYPE_DESC" Type="Edm.String" MaxLength="100"/>
+                <NavigationProperty Name="ItsRoles" Relationship="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsRoles" FromRole="BusinessPartners" ToRole="BusinessPartnerRoles"/>
+                <NavigationProperty Name="ItsCountry" Relationship="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsCountry" FromRole="BusinessPartners" ToRole="Country"/>
+                <NavigationProperty Name="ItsContacts" Relationship="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsContacts" FromRole="BusinessPartners" ToRole="BusinessPartnerContacts"/>
+                <NavigationProperty Name="ItsBusinessPartnerTypes" Relationship="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsBusinessPartnerTypes" FromRole="BusinessPartners" ToRole="BusinessPartnerTypes"/>
+                <NavigationProperty Name="ItsInsureds" Relationship="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsInsureds" FromRole="BusinessPartners" ToRole="BusinessPartnerRoles"/>
+                <NavigationProperty Name="ItsAdditonalInsureds" Relationship="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsAdditonalInsureds" FromRole="BusinessPartners" ToRole="BusinessPartnerRoles"/>
+                <NavigationProperty Name="ItsBrokers" Relationship="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsBrokers" FromRole="BusinessPartners" ToRole="BusinessPartnerRoles"/>
+                <NavigationProperty Name="ItsMembers" Relationship="atom.srv.mdm.crm.CRMService.BusinessPartners_ItsMembers" FromRole="BusinessPartners" ToRole="BusinessPartnerRoles"/>
+            </EntityType>
+            <EntityType Name="Insureds">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ACTIVE" Type="Edm.Boolean"/>
+                <Property Name="DELETED" Type="Edm.Boolean"/>
+                <Property Name="ID" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="BP_ID_EXT" Type="Edm.String" MaxLength="20"/>
+                <Property Name="FIRST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="MIDDLE_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="LAST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CITY" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ADDR1" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR2" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR3" Type="Edm.String" MaxLength="255"/>
+                <Property Name="COUNTRY_CD" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COMPANY_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ALIAS" Type="Edm.String" MaxLength="255"/>
+                <Property Name="SEARCH_STRING" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="EMAIL" Type="Edm.String" MaxLength="255"/>
+                <Property Name="BUSINESS_PARTNER_TYPE_ID" Type="Edm.Int32"/>
+                <Property Name="FULL_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="FULL_ADDR" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="COPMANY_TYPE_CODE" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COMPNAY_TYPE_DESC" Type="Edm.String" MaxLength="100"/>
+                <Property Name="ROLE_NAME" Type="Edm.String" MaxLength="50"/>
+            </EntityType>
+            <EntityType Name="AdditonalInsureds">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ACTIVE" Type="Edm.Boolean"/>
+                <Property Name="DELETED" Type="Edm.Boolean"/>
+                <Property Name="ID" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="BP_ID_EXT" Type="Edm.String" MaxLength="20"/>
+                <Property Name="FIRST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="MIDDLE_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="LAST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CITY" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ADDR1" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR2" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR3" Type="Edm.String" MaxLength="255"/>
+                <Property Name="COUNTRY_CD" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COMPANY_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ALIAS" Type="Edm.String" MaxLength="255"/>
+                <Property Name="SEARCH_STRING" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="EMAIL" Type="Edm.String" MaxLength="255"/>
+                <Property Name="BUSINESS_PARTNER_TYPE_ID" Type="Edm.Int32"/>
+                <Property Name="FULL_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="FULL_ADDR" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="COPMANY_TYPE_CODE" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COMPNAY_TYPE_DESC" Type="Edm.String" MaxLength="100"/>
+                <Property Name="ROLE_NAME" Type="Edm.String" MaxLength="50"/>
+            </EntityType>
+            <EntityType Name="Brokers">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ACTIVE" Type="Edm.Boolean"/>
+                <Property Name="DELETED" Type="Edm.Boolean"/>
+                <Property Name="ID" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="BP_ID_EXT" Type="Edm.String" MaxLength="20"/>
+                <Property Name="FIRST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="MIDDLE_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="LAST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CITY" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ADDR1" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR2" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR3" Type="Edm.String" MaxLength="255"/>
+                <Property Name="COUNTRY_CD" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COMPANY_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ALIAS" Type="Edm.String" MaxLength="255"/>
+                <Property Name="SEARCH_STRING" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="EMAIL" Type="Edm.String" MaxLength="255"/>
+                <Property Name="BUSINESS_PARTNER_TYPE_ID" Type="Edm.Int32"/>
+                <Property Name="FULL_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="FULL_ADDR" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="COPMANY_TYPE_CODE" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COMPNAY_TYPE_DESC" Type="Edm.String" MaxLength="100"/>
+                <Property Name="ROLE_NAME" Type="Edm.String" MaxLength="50"/>
+            </EntityType>
+            <EntityType Name="Members">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ACTIVE" Type="Edm.Boolean"/>
+                <Property Name="DELETED" Type="Edm.Boolean"/>
+                <Property Name="ID" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="BP_ID_EXT" Type="Edm.String" MaxLength="20"/>
+                <Property Name="FIRST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="MIDDLE_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="LAST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CITY" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ADDR1" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR2" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR3" Type="Edm.String" MaxLength="255"/>
+                <Property Name="COUNTRY_CD" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COMPANY_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ALIAS" Type="Edm.String" MaxLength="255"/>
+                <Property Name="SEARCH_STRING" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="EMAIL" Type="Edm.String" MaxLength="255"/>
+                <Property Name="BUSINESS_PARTNER_TYPE_ID" Type="Edm.Int32"/>
+                <Property Name="FULL_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="FULL_ADDR" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="COPMANY_TYPE_CODE" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COMPNAY_TYPE_DESC" Type="Edm.String" MaxLength="100"/>
+                <Property Name="ROLE_NAME" Type="Edm.String" MaxLength="50"/>
+            </EntityType>
+            <EntityType Name="BusinessPartnerRoles">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="ROLE_NAME"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ACTIVE" Type="Edm.Boolean"/>
+                <Property Name="DELETED" Type="Edm.Boolean"/>
+                <Property Name="ID" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="ROLE_NAME" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <NavigationProperty Name="ItsBusinessPartner" Relationship="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles_ItsBusinessPartner" FromRole="BusinessPartnerRoles" ToRole="BusinessPartners"/>
+                <NavigationProperty Name="ItsRole" Relationship="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles_ItsRole" FromRole="BusinessPartnerRoles" ToRole="BusinessPartnerRolesList"/>
+            </EntityType>
+            <EntityType Name="BusinessPartnerContacts">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="CONTACT_BP_ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ACTIVE" Type="Edm.Boolean"/>
+                <Property Name="DELETED" Type="Edm.Boolean"/>
+                <Property Name="ID" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="CONTACT_BP_ID" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <NavigationProperty Name="ItsBusinessPartner" Relationship="atom.srv.mdm.crm.CRMService.BusinessPartnerContacts_ItsBusinessPartner" FromRole="BusinessPartnerContacts" ToRole="BusinessPartners"/>
+            </EntityType>
+            <EntityType Name="BusinessPartnersWithAttributes">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="BP_ID_EXT" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ADDR1" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR2" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR3" Type="Edm.String" MaxLength="255"/>
+                <Property Name="FULL_ADDR" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="FIRST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="MIDDLE_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="LAST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="FULL_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="COMPANY_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="COUNTRY_CD" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COUNTRY_NAME" Type="Edm.String" MaxLength="50"/>
+                <Property Name="EMAIL" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ALIAS" Type="Edm.String" MaxLength="255"/>
+                <Property Name="SEARCH_STRING" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="BPROLES" Type="Edm.String" MaxLength="1000"/>
+            </EntityType>
+            <EntityType Name="Country">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="COUNTRY_CD"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ACTIVE" Type="Edm.Boolean"/>
+                <Property Name="DELETED" Type="Edm.Boolean"/>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="COUNTRY_CD" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="COUNTRY_NAME" Type="Edm.String" MaxLength="50"/>
+                <Property Name="EMOJI" Type="Edm.String" MaxLength="255"/>
+            </EntityType>
+            <ComplexType Name="BusinessPartnerDetails">
+                <Property Name="ID" Type="Edm.String" MaxLength="20"/>
+                <Property Name="BP_ID_EXT" Type="Edm.String" MaxLength="20"/>
+                <Property Name="FIRST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="MIDDLE_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="LAST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CITY" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ADDR1" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR2" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ADDR3" Type="Edm.String" MaxLength="255"/>
+                <Property Name="COUNTRY_CD" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COMPANY_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ALIAS" Type="Edm.String" MaxLength="100"/>
+                <Property Name="EMAIL" Type="Edm.String" MaxLength="255"/>
+                <Property Name="BUSINESS_PARTNER_TYPE_ID" Type="Edm.Int32"/>
+                <Property Name="COPMANY_TYPE_CODE" Type="Edm.String" MaxLength="3"/>
+                <Property Name="COMPNAY_TYPE_DESC" Type="Edm.String" MaxLength="100"/>
+                <Property Name="ItsRoles" Type="Collection(atom.srv.mdm.crm.CRMService.BusinessPartnerDetails_ItsRoles)" Nullable="false"/>
+                <Property Name="ItsContacts" Type="Collection(atom.srv.mdm.crm.CRMService.BusinessPartnerDetails_ItsContacts)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="BusinessPartnerDetails_ItsRoles">
+                <Property Name="ID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="ROLE_NAME" Type="Edm.String" MaxLength="50"/>
+            </ComplexType>
+            <ComplexType Name="BusinessPartnerDetails_ItsContacts">
+                <Property Name="ID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="CONTACT_BP_ID" Type="Edm.String" MaxLength="10"/>
+            </ComplexType>
+            <Association Name="BusinessPartners_ItsRoles">
+                <End Role="BusinessPartners" Type="atom.srv.mdm.crm.CRMService.BusinessPartners" Multiplicity="*"/>
+                <End Role="BusinessPartnerRoles" Type="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles" Multiplicity="*"/>
+            </Association>
+            <Association Name="BusinessPartners_ItsCountry">
+                <End Role="BusinessPartners" Type="atom.srv.mdm.crm.CRMService.BusinessPartners" Multiplicity="*"/>
+                <End Role="Country" Type="atom.srv.mdm.crm.CRMService.Country" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="BusinessPartners_ItsContacts">
+                <End Role="BusinessPartners" Type="atom.srv.mdm.crm.CRMService.BusinessPartners" Multiplicity="*"/>
+                <End Role="BusinessPartnerContacts" Type="atom.srv.mdm.crm.CRMService.BusinessPartnerContacts" Multiplicity="*"/>
+            </Association>
+            <Association Name="BusinessPartners_ItsBusinessPartnerTypes">
+                <End Role="BusinessPartners" Type="atom.srv.mdm.crm.CRMService.BusinessPartners" Multiplicity="*"/>
+                <End Role="BusinessPartnerTypes" Type="atom.srv.mdm.crm.CRMService.BusinessPartnerTypes" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="BusinessPartnerTypes">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="BusinessPartners">
+                        <PropertyRef Name="BUSINESS_PARTNER_TYPE_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BusinessPartners_ItsInsureds">
+                <End Role="BusinessPartners" Type="atom.srv.mdm.crm.CRMService.BusinessPartners" Multiplicity="*"/>
+                <End Role="BusinessPartnerRoles" Type="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles" Multiplicity="*"/>
+            </Association>
+            <Association Name="BusinessPartners_ItsAdditonalInsureds">
+                <End Role="BusinessPartners" Type="atom.srv.mdm.crm.CRMService.BusinessPartners" Multiplicity="*"/>
+                <End Role="BusinessPartnerRoles" Type="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles" Multiplicity="*"/>
+            </Association>
+            <Association Name="BusinessPartners_ItsBrokers">
+                <End Role="BusinessPartners" Type="atom.srv.mdm.crm.CRMService.BusinessPartners" Multiplicity="*"/>
+                <End Role="BusinessPartnerRoles" Type="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles" Multiplicity="*"/>
+            </Association>
+            <Association Name="BusinessPartners_ItsMembers">
+                <End Role="BusinessPartners" Type="atom.srv.mdm.crm.CRMService.BusinessPartners" Multiplicity="*"/>
+                <End Role="BusinessPartnerRoles" Type="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles" Multiplicity="*"/>
+            </Association>
+            <Association Name="BusinessPartnerRoles_ItsBusinessPartner">
+                <End Role="BusinessPartnerRoles" Type="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles" Multiplicity="*"/>
+                <End Role="BusinessPartners" Type="atom.srv.mdm.crm.CRMService.BusinessPartners" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="BusinessPartners">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="BusinessPartnerRoles">
+                        <PropertyRef Name="ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BusinessPartnerRoles_ItsRole">
+                <End Role="BusinessPartnerRoles" Type="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles" Multiplicity="*"/>
+                <End Role="BusinessPartnerRolesList" Type="atom.srv.mdm.crm.CRMService.BusinessPartnerRolesList" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="BusinessPartnerRolesList">
+                        <PropertyRef Name="ROLE_NAME"/>
+                    </Principal>
+                    <Dependent Role="BusinessPartnerRoles">
+                        <PropertyRef Name="ROLE_NAME"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BusinessPartnerContacts_ItsBusinessPartner">
+                <End Role="BusinessPartnerContacts" Type="atom.srv.mdm.crm.CRMService.BusinessPartnerContacts" Multiplicity="*"/>
+                <End Role="BusinessPartners" Type="atom.srv.mdm.crm.CRMService.BusinessPartners" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="BusinessPartners">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="BusinessPartnerContacts">
+                        <PropertyRef Name="CONTACT_BP_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerRolesList/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerRolesList/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerRolesList/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerRolesList/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerRolesList/ACTIVE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Active"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Inactive"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerRolesList/DELETED" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Yes"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="No"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerTypes/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerTypes/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerTypes/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerTypes/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerTypes/ACTIVE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Active"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Inactive"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerTypes/DELETED" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Yes"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="No"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerTypes/ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Individual"/>
+                            <PropertyValue Property="Value" Int="1"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Corporate"/>
+                            <PropertyValue Property="Value" Int="2"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Group"/>
+                            <PropertyValue Property="Value" Int="3"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Contact"/>
+                            <PropertyValue Property="Value" Int="4"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.EntityContainer/BusinessPartners" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartners/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartners/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartners/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartners/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartners/ACTIVE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Active"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Inactive"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartners/DELETED" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Yes"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="No"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartners/EMAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.Pattern" String="[\w|-]+@\w[\w|-]*\.[a-z]{2,3}"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Insureds/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Insureds/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Insureds/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Insureds/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Insureds/ACTIVE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Active"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Inactive"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Insureds/DELETED" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Yes"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="No"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Insureds/EMAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.Pattern" String="[\w|-]+@\w[\w|-]*\.[a-z]{2,3}"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.AdditonalInsureds/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.AdditonalInsureds/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.AdditonalInsureds/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.AdditonalInsureds/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.AdditonalInsureds/ACTIVE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Active"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Inactive"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.AdditonalInsureds/DELETED" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Yes"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="No"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.AdditonalInsureds/EMAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.Pattern" String="[\w|-]+@\w[\w|-]*\.[a-z]{2,3}"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Brokers/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Brokers/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Brokers/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Brokers/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Brokers/ACTIVE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Active"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Inactive"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Brokers/DELETED" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Yes"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="No"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Brokers/EMAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.Pattern" String="[\w|-]+@\w[\w|-]*\.[a-z]{2,3}"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Members/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Members/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Members/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Members/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Members/ACTIVE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Active"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Inactive"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Members/DELETED" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Yes"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="No"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Members/EMAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.Pattern" String="[\w|-]+@\w[\w|-]*\.[a-z]{2,3}"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.EntityContainer/BusinessPartnerRoles" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles/ACTIVE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Active"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Inactive"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerRoles/DELETED" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Yes"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="No"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.EntityContainer/BusinessPartnerContacts" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerContacts/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerContacts/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerContacts/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerContacts/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerContacts/ACTIVE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Active"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Inactive"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnerContacts/DELETED" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Yes"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="No"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.EntityContainer/BusinessPartnersWithAttributes" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnersWithAttributes/EMAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.Pattern" String="[\w|-]+@\w[\w|-]*\.[a-z]{2,3}"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.BusinessPartnersWithAttributes/BPROLES" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Country/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Country/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Country/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Country/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Country/ACTIVE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Active"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Inactive"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="atom.srv.mdm.crm.CRMService.Country/DELETED" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Yes"/>
+                            <PropertyValue Property="Value" Bool="true"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="No"/>
+                            <PropertyValue Property="Value" Bool="false"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

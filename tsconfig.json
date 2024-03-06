@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "none",
+        "noEmit": true,
+        "checkJs": true,
+        "allowJs": true,
+        "target": "es2016",
+        "types": [
+            "@sapui5/ts-types",
+            "@types/jquery"
+        ]
+    }
+}

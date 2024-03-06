@@ -1,0 +1,170 @@
+<mvc:View controllerName="atom.ui.clearing.clearingapplication.controller.MainView"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc" >
+    <Page id="idMainViewPage" class="sapUiResponsivePadding--header sapUiResponsivePadding--footer sapUiBody">
+        <content>
+            <FlexBox id="idFlexBox" height="100%" alignItems="Start" justifyContent="Center">
+                <VBox id="idVBox" class="sapUiResponsiveContentPadding sapUiLargeMargin" width="60%">
+                    <f:Form id="idForm" editable="true">
+                        <f:title>                            <!-- <core:Title text="Clearing Application" /> --></f:title>
+                        <f:layout>
+                            <f:ResponsiveGridLayout id="idResponsiveGridLayout" singleContainerFullSize="false" />
+                        </f:layout>
+                        <f:formContainers>
+                            <f:FormContainer>
+                                <f:formElements>
+                                    <f:FormElement>
+                                        <f:label>
+                                            <Label text="Company Code" required="true" />
+                                        </f:label>
+                                        <f:fields>
+                                            <ComboBox id="CompanyCodeInputID" placeholder="Select Company Code " showSecondaryValues="true" selectedKey="{selectionModel>/CompanyCode}" selectionChange="onCompanyCodeChange" items="{path: 'localModel>/CompanyCodes'}">
+                                                <items>
+                                                    <core:ListItem  key="{localModel>CompanyCode}" text="{localModel>CompanyName}" additionalText="{localModel>CompanyCode}" />
+                                                </items>
+                                            </ComboBox>
+                                        </f:fields>
+                                    </f:FormElement>
+                                    <f:FormElement>
+                                        <f:label>
+                                            <Label text="Business Partner" required="{= ${selectionModel>/Division} !== '01'}" />
+                                        </f:label>
+                                        <f:fields>
+                                            <MultiInput id="bpInputID" placeholder="Choose Business Partners " showValueHelp="true" valueHelpRequest="onMultiInputHandleBPValueHelpRequest" showSuggestion="true" suggestionItems="{localModel>/BPList}" tokenUpdate="onMultiInputTokenUpdate">
+                                                <core:ListItem key="{localModel>BP_ID}" text="{localModel>BP_NAME}" additionalText="{localModel>BP_ID}" />
+                                            </MultiInput>
+                                        </f:fields>
+                                    </f:FormElement>
+                                    <f:FormElement>
+                                        <f:label>
+                                            <Label text="External Reference Number" required="true" />
+                                        </f:label>
+                                        <f:fields>
+                                            <MultiInput id="externalReferenceNumberID" placeholder="Enter External Reference No " showClearIcon="true" tokenUpdate="onMultiInputTokenUpdate" showValueHelp="false">
+                                            </MultiInput>
+                                        </f:fields>
+                                    </f:FormElement>
+                                    <f:FormElement>
+                                        <f:label>
+                                            <Label text="SOA Reference" />
+                                        </f:label>
+                                        <f:fields>
+                                            <MultiInput id="soaReferenceNumberID" placeholder="Enter SOA Reference " maxTokens="100" showClearIcon="true" showValueHelp="false">
+                                                <suggestionItems>
+                                                    <core:Item key="" text="" />
+                                                </suggestionItems>
+                                            </MultiInput>
+                                        </f:fields>
+                                    </f:FormElement>
+                                    <f:FormElement>
+                                        <f:label>
+                                            <Label text="UMR Number" />
+                                        </f:label>
+                                        <f:fields>
+                                            <MultiInput id="UMRID" placeholder="Enter UMR Number" maxTokens="60" showValueHelp="false">
+                                                <suggestionItems>
+                                                    <core:Item key="" text="" />
+                                                </suggestionItems>
+                                            </MultiInput>
+                                        </f:fields>
+                                    </f:FormElement>
+                                    <f:FormElement>
+                                        <f:label>
+                                            <Label text="Enter Insured Name" />
+                                        </f:label>
+                                        <f:fields>
+                                            <Input  placeholder="Enter Insured Name" maxLength="160" value="{selectionModel>/InsuredName}" showClearIcon="true" />
+                                        </f:fields>
+                                    </f:FormElement>
+                                    <f:FormElement>
+                                        <f:label>
+                                            <Label text="Payment" />
+                                        </f:label>
+                                        <f:fields>
+                                            <Input id="idpaymentAmountInput" placeholder="Enter Payment Amount Here" showClearIcon="true" liveChange="onInputCurrencyLiveChange" textAlign="Begin" value="{ parts: [ {path: 'selectionModel>/Payment'}, {path: 'selectionModel>/Currency'} ], 
+                                                        type: 'sap.ui.model.type.Currency', 
+                                                        formatOptions: { showMeasure: false, decimalSeparator : '.', groupingSeparator : ',' } }" width="35%"/>
+                                        </f:fields>
+                                    </f:FormElement>
+                                </f:formElements>
+                            </f:FormContainer>
+                            <f:FormContainer>
+                                <f:FormElement>
+                                
+                                    <f:label>
+                                        <Label text="Bank Charge" />
+                                    </f:label>
+                                    <f:fields>
+                                        <Input id="idbankChargeAmountInput" placeholder="Enter Bank Charge" showClearIcon="true" liveChange="onInputCurrencyLiveChange" textAlign="Begin" value="{ parts: [ {path: 'selectionModel>/BankCharge'}, {path: 'selectionModel>/Currency'} ], 
+                                                    type: 'sap.ui.model.type.Currency', 
+                                                    formatOptions: { showMeasure: false, decimalSeparator : '.', groupingSeparator : ',' } }" width="35%"/>
+
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement>
+                                    <f:label>
+                                        <Label text="Currency"/>
+                                    </f:label>
+                                    <f:fields>
+                                        <Input id="CurrencyInputID" value="{selectionModel>/Currency}" editable="false" width="15%"/>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement>
+                                    <f:label>
+                                        <Label text="Posting Date" />
+                                    </f:label>
+                                    <f:fields>
+                                        <DatePicker id="PostingDateInputID" minDate="{selectionModel>/PostingDateMinDate}" valueFormat="yyyyMMdd" value="{
+                                            path: 'selectionModel>/PostingDate',
+                                            type: 'sap.ui.model.type.Date',
+                                            formatOptions: {
+                                                UTC: true,
+                                                source: {
+                                                pattern: 'yyyy-MM-ddTHH:mm:ss'
+                                                }
+                                            }
+                                            }" width="55%" class="disableDateIP"/>
+
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement>
+                                    <f:label>
+                                        <Label text="Division" required="true" />
+                                    </f:label>
+                                    <f:fields>
+                                        <ComboBox id="idDivisionComboBox" showSecondaryValues="true" selectedKey="{selectionModel>/Division}" selectionChange="onComboBoxDivisionSelectionChange" width="55%" enabled="{= ${selectionModel>/CompanyCode} !== ''}">
+                                            <items>
+                                                <core:ListItem key="01" text="Product Division 01" additionalText="01" />
+                                                <core:ListItem key="E1" text="Aviation" additionalText="E1" />
+                                                <core:ListItem key="E2" text="Energy" additionalText="E2"/>
+                                                <core:ListItem key="E3" text="Space" additionalText="E3" />
+                                                <core:ListItem key="E4" text="Political Violence" additionalText="E4" />
+                                            </items>
+                                        </ComboBox>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement>
+                                    <f:label>
+                                        <Label text="Elesco Bank Account Number" required="true" />
+                                    </f:label>
+                                    <f:fields>
+                                        <ComboBox id="idApplicableBankAccountNumbersComboBox" placeholder="Choose Bank Account Number" showClearIcon="true" showSecondaryValues="true" selectedKey="{selectionModel>/ElescoBankAccountNumber}" items="{path: 'localModel>/ApplicableBankAccountNumbers'}" selectionChange="onApplicableBankAccountNumbersComboBoxSelectionChange" enabled="{= ${selectionModel>/Division} !== ''}">
+                                            <items>
+                                                <core:ListItem key="{localModel>ElescoBankAccountNumber}" text="{localModel>Description}" additionalText="{localModel>ElescoBankAccountNumber}" />
+                                            </items>
+                                        </ComboBox>
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:FormContainer>
+                        </f:formContainers>
+                    </f:Form>
+                    <HBox  justifyContent="Center" width="100%">
+                        <Button type="Emphasized" text="Execute" press="onExecuteButtonPress" class="sapUiSmallMarginTop" />
+                    </HBox>
+                </VBox>
+            </FlexBox>
+        </content>
+    </Page>
+</mvc:View>

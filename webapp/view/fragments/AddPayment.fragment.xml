@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Dialog title="Signature Page" contentHeight="auto" contentWidth="auto">
+        <content>
+            <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" columnsXL="1" columnsL="1" singleContainerFullSize="false">
+                <f:content>
+                    <Label text="Payment"/>
+                    <Input id="idPaymentFragInput" textAlign="Right" value="{ 
+                        path: '/Payment',
+                        type: 'sap.ui.model.type.Float',
+                        formatOptions: {
+                            minFractionDigits: 2,
+                            maxFractionDigits: 2,
+                            minIntegerDigits: 1,
+                            maxIntegerDigits: 15,
+                            groupingEnabled: true,
+                            groupingSeparator: ',',
+                            decimalSeparator: '.'
+                        }
+                    }" liveChange="onLiveChangeCurrency" />
+                    <Label id="idBusinessPartnerLabel" text="Business Partner" required="true" />
+                    <ComboBox id="idBusinessPartnersFragComboBox" placeholder="Select Business Partner" showSecondaryValues="true" items="{/BusinessPartners}">
+                        <core:ListItem key="{Gpart}" text="{BpName}" additionalText="{Gpart}" />
+                    </ComboBox>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <beginButton>
+            <Button text="Add Payment" press="onAddPaymentButtonPress"/>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press="onCancelButtonPress"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
